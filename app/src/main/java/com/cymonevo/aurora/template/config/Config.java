@@ -1,7 +1,7 @@
 package com.cymonevo.aurora.template.config;
 
 public class Config {
-    public static boolean DEBUG_MODE = false;
+    public static boolean DEBUG_MODE = true;
 
 //    Internal API
     public static String BASE_URL_STAGING = "http://api.cymonevo.com/";

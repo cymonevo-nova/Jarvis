@@ -29,6 +29,8 @@ task clean(type: Delete) {
 ext {
     appCompat_version = '27.1.1'
     retrofit_version = '2.5.0'
+    picasso_version = '2.71828'
+    imageCompressor_version = '2.1.0'
 
     junit_version = '4.12'
     runner_version = '1.0.2'

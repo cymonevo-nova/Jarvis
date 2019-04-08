@@ -37,6 +37,8 @@ dependencies {
     kapt "com.jakewharton:butterknife-compiler:$butterknife_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.picasso:picasso:$picasso_version"
+    implementation "id.zelory:compressor:$imageCompressor_version"
 
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "com.android.support.test:runner:$runner_version"

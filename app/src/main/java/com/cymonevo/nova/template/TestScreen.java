@@ -1,19 +1,15 @@
-package com.cymonevo.aurora.template;
+package com.cymonevo.nova.template;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.cymonevo.aurora.template.config.Config;
-import com.cymonevo.aurora.template.core.compressor.CompressorClient;
-import com.cymonevo.aurora.template.core.retrofit.RetrofitClient;
-import com.cymonevo.aurora.template.service.API.APICall;
-import com.cymonevo.aurora.template.service.API.APIResponse;
-import com.cymonevo.aurora.template.service.API.github.GithubAPI;
-import com.cymonevo.aurora.template.service.API.github.request.ListRepoRequest;
+import com.cymonevo.nova.template.service.Provider;
+import com.cymonevo.nova.template.service.api.APICall;
+import com.cymonevo.nova.template.service.api.APIResponse;
+import com.cymonevo.nova.template.service.api.github.GithubAPI;
+import com.cymonevo.nova.template.service.api.github.request.ListRepoRequest;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
@@ -22,8 +18,6 @@ import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
-
-import java.io.File;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -71,16 +65,16 @@ public class TestScreen extends AppCompatActivity implements APICall {
 
 //        imgTest2.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.placeholder));
 
-//        imgTest1.setImageBitmap(CompressorClient.compressDrawable(this, R.drawable.placeholder));
-//        imgTest2.setImageBitmap(CompressorClient.compressDrawable(this, R.drawable.placeholder));
-//        imgTest3.setImageBitmap(CompressorClient.compressDrawable(this, R.drawable.placeholder));
-//        imgTest4.setImageBitmap(CompressorClient.compressDrawable(this, R.drawable.placeholder));
-//        imgTest5.setImageBitmap(CompressorClient.compressDrawable(this, R.drawable.placeholder));
+//        imgTest1.setImageBitmap(CompressorClient.drawableToBitmap(this, R.drawable.placeholder));
+//        imgTest2.setImageBitmap(CompressorClient.drawableToBitmap(this, R.drawable.placeholder));
+//        imgTest3.setImageBitmap(CompressorClient.drawableToBitmap(this, R.drawable.placeholder));
+//        imgTest4.setImageBitmap(CompressorClient.drawableToBitmap(this, R.drawable.placeholder));
+//        imgTest5.setImageBitmap(CompressorClient.drawableToBitmap(this, R.drawable.placeholder));
     }
 
     @OnClick(R2.id.btn_test) void action() {
         ListRepoRequest request = new ListRepoRequest("cymon1997");
-        GithubAPI.listRepos(this, request);
+        Provider.getGithubAPI().listRepos(this, request);
     }
 
     @Override

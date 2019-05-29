@@ -1,4 +1,4 @@
-package com.cymonevo.aurora.template.core.compressor;
+package com.cymonevo.nova.template.core.compressor;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -19,7 +19,7 @@ public class CompressorClient {
         }
     }
 
-    public static Bitmap compressBitmap(Context context, File file) {
+    public static Bitmap fileToBitmap(Context context, File file) {
         try {
             return new Compressor(context).compressToBitmap(file);
         } catch (IOException e) {
@@ -27,7 +27,7 @@ public class CompressorClient {
         }
     }
 
-    public static Bitmap compressDrawable(Context context, int resId, int quality) {
+    public static Bitmap drawableToBitmap(Context context, int resId, int quality) {
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), resId);
         bmp.compress(Bitmap.CompressFormat.JPEG, quality, os);
@@ -35,7 +35,7 @@ public class CompressorClient {
         return BitmapFactory.decodeByteArray(data, 0, data.length);
     }
 
-    public static Bitmap compressDrawable(Context context, int resId) {
-        return compressDrawable(context, resId, 50);
+    public static Bitmap drawableToBitmap(Context context, int resId) {
+        return drawableToBitmap(context, resId, 50);
     }
 }

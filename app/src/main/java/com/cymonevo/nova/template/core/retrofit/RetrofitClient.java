@@ -1,4 +1,4 @@
-package com.cymonevo.aurora.template.core.retrofit;
+package com.cymonevo.nova.template.core.retrofit;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

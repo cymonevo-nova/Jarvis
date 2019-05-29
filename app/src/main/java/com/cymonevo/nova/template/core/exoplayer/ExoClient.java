@@ -1,4 +1,4 @@
-package com.cymonevo.aurora.template.core.exoplayer;
+package com.cymonevo.nova.template.core.exoplayer;
 
 import android.content.Context;
 

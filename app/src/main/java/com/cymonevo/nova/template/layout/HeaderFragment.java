@@ -1,11 +1,11 @@
-package com.cymonevo.aurora.template.layout;
+package com.cymonevo.nova.template.layout;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cymonevo.aurora.template.R;
+import com.cymonevo.nova.template.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

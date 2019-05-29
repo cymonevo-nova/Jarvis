@@ -1,4 +1,4 @@
-package com.cymonevo.aurora.template.module.list_repo;
+package com.cymonevo.nova.template.module.list_repo;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,14 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.cymonevo.aurora.template.R;
-import com.cymonevo.aurora.template.R2;
-import com.cymonevo.aurora.template.config.API.HttpStatus;
-import com.cymonevo.aurora.template.service.API.APICall;
-import com.cymonevo.aurora.template.service.API.APIResponse;
-import com.cymonevo.aurora.template.service.API.github.GithubAPI;
-import com.cymonevo.aurora.template.service.API.github.entity.GithubRepository;
-import com.cymonevo.aurora.template.service.API.github.request.ListRepoRequest;
+import com.cymonevo.nova.template.R;
+import com.cymonevo.nova.template.R2;
+import com.cymonevo.nova.template.config.Http;
+import com.cymonevo.nova.template.service.api.APICall;
+import com.cymonevo.nova.template.service.api.APIResponse;
+import com.cymonevo.nova.template.service.api.github.GithubAPI;
+import com.cymonevo.nova.template.service.api.github.entity.GithubRepository;
+import com.cymonevo.nova.template.service.api.github.request.ListRepoRequest;
 
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class ListRepoFragment extends Fragment implements APICall {
 
     @Override
     public void onResponse(APIResponse response) {
-        if (response.status == HttpStatus.STATUS_OK) {
+        if (response.status == Http.STATUS_OK) {
             this.dataset = List.class.isInstance(response.payload)? List.class.cast(response.payload) : null;
             ListRepoAdapter adapter = new ListRepoAdapter(this.dataset);
             rvListRepo.setAdapter(adapter);

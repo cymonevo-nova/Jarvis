@@ -1,12 +1,12 @@
-package com.cymonevo.aurora.template.module.list_repo;
+package com.cymonevo.nova.template.module.list_repo;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.cymonevo.aurora.template.R;
-import com.cymonevo.aurora.template.service.API.github.entity.GithubRepository;
+import com.cymonevo.nova.template.R;
+import com.cymonevo.nova.template.service.api.github.entity.GithubRepository;
 
 import java.util.List;
 

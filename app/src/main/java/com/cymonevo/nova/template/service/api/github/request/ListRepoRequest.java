@@ -1,4 +1,4 @@
-package com.cymonevo.nova.template.service.API.github.request;
+package com.cymonevo.nova.template.service.api.github.request;
 
 public class ListRepoRequest {
     public String username;

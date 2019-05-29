@@ -1,6 +1,6 @@
-package com.cymonevo.nova.template.service.API.github;
+package com.cymonevo.nova.template.service.api.github;
 
-import com.cymonevo.nova.template.service.API.github.entity.GithubRepository;
+import com.cymonevo.nova.template.service.api.github.entity.GithubRepository;
 
 import java.util.List;
 import retrofit2.Call;

@@ -1,4 +1,4 @@
-package com.cymonevo.nova.template.service.API;
+package com.cymonevo.nova.template.service.api;
 
 public class APIResponse {
     public int status;

@@ -1,4 +1,4 @@
-package com.cymonevo.aurora.template.service.API;
+package com.cymonevo.nova.template.service.API;
 
 public interface APICall {
     void onResponse(APIResponse response);

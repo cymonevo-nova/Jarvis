@@ -1,4 +1,4 @@
-package com.cymonevo.aurora.template.service.API.github.entity;
+package com.cymonevo.nova.template.service.API.github.entity;
 
 import com.google.gson.annotations.SerializedName;
 

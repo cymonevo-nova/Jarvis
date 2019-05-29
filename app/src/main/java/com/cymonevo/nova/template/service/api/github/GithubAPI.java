@@ -1,11 +1,11 @@
-package com.cymonevo.aurora.template.service.API.github;
+package com.cymonevo.nova.template.service.API.github;
 
-import com.cymonevo.aurora.template.config.API.HttpMessage;
-import com.cymonevo.aurora.template.config.API.HttpStatus;
-import com.cymonevo.aurora.template.service.API.APICall;
-import com.cymonevo.aurora.template.service.API.APIResponse;
-import com.cymonevo.aurora.template.service.API.github.entity.GithubRepository;
-import com.cymonevo.aurora.template.service.API.github.request.ListRepoRequest;
+import com.cymonevo.nova.template.config.API.HttpMessage;
+import com.cymonevo.nova.template.config.API.HttpStatus;
+import com.cymonevo.nova.template.service.API.APICall;
+import com.cymonevo.nova.template.service.API.APIResponse;
+import com.cymonevo.nova.template.service.API.github.entity.GithubRepository;
+import com.cymonevo.nova.template.service.API.github.request.ListRepoRequest;
 
 import java.util.List;
 import retrofit2.Call;

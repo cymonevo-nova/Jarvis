@@ -1,4 +1,4 @@
-package com.cymonevo.aurora.template
+package com.cymonevo.nova.template
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

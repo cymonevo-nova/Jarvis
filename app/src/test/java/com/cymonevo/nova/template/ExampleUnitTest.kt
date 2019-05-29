@@ -1,4 +1,4 @@
-package com.cymonevo.aurora.template
+package com.cymonevo.nova.template
 
 import org.junit.Test
 

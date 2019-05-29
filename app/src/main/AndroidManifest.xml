@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.cymonevo.aurora.template">
+    package="com.cymonevo.nova.template">
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -11,12 +11,26 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme" >
 
-        <activity android:name=".MainScreen">
+        <activity android:name="com.cymonevo.nova.template.MainScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <!-- Accepts URIs that begin with "http://www.nova.cymonevo.com/template” -->
+                <data android:scheme="http"
+                    android:host="www.nova.cymonevo.com"
+                    android:pathPrefix="/template" />
+                <!-- note that the leading "/" is required for pathPrefix-->
+                <!-- Accepts URIs that begin with "nova.cymonevo://template” -->
+                <data android:scheme="example"
+                    android:host="template" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".TestScreen"/>
+        <activity android:name="com.cymonevo.nova.template.TestScreen"/>
     </application>
 </manifest>

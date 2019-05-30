@@ -20,7 +20,7 @@ public class GithubAPI {
         service = client.getInstance().create(GithubService.class);
     }
 
-    public void listRepos(final APICall activity, ListRepoRequest request) {
+    public void listRepos(final APICall activity, int code, ListRepoRequest request) {
         final Call<List<GithubRepository>> repos = service.listRepos(request.username);
         repos.enqueue(new Callback<List<GithubRepository>>() {
             @Override
@@ -31,12 +31,12 @@ public class GithubAPI {
                 } else {
                     response = new APIResponse(Http.STATUS_ERROR_INTERNAL_SERVER, Http.MSG_ERROR_INTERNAL_SERVER, null);
                 }
-                activity.onResponse(response);
+                activity.onAPIResponse(code, response);
             }
 
             @Override
             public void onFailure(Call<List<GithubRepository>> call, Throwable t) {
-                activity.onFailure(new APIResponse(Http.STATUS_ERROR_UNKNOWN, Http.MSG_ERROR_UNKNOWN, null));
+                activity.onAPIFailure(code, t.getMessage());
             }
         });
     }

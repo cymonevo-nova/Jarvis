@@ -13,6 +13,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -41,6 +47,13 @@ dependencies {
     kapt "com.jakewharton:butterknife-compiler:$butterknife_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxjava_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
     implementation "com.squareup.picasso:picasso:$picasso_version"
     implementation "id.zelory:compressor:$imageCompressor_version"
     implementation "com.google.android.exoplayer:exoplayer:$exoplayer_version"

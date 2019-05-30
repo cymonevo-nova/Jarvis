@@ -1,31 +1,29 @@
 package com.cymonevo.nova.template;
 
-import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.cymonevo.nova.template.core.Router;
 import com.cymonevo.nova.template.service.Provider;
 import com.cymonevo.nova.template.service.api.APICall;
 import com.cymonevo.nova.template.service.api.APIResponse;
-import com.cymonevo.nova.template.service.api.github.GithubAPI;
-import com.cymonevo.nova.template.service.api.github.request.ListRepoRequest;
-import com.google.android.exoplayer2.ExoPlayerFactory;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
-import com.google.android.exoplayer2.extractor.ExtractorsFactory;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
+import com.cymonevo.nova.template.service.db.DBCall;
+import com.cymonevo.nova.template.service.db.user.DBResult;
+import com.cymonevo.nova.template.service.db.user.entity.UserData;
 import com.google.android.exoplayer2.ui.PlayerView;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.util.Util;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class TestScreen extends AppCompatActivity implements APICall {
+public class TestScreen extends AppCompatActivity implements APICall, DBCall {
     @BindView(R2.id.tv_test)
     TextView tvTest;
     @BindView(R2.id.exo_test)
@@ -40,50 +38,53 @@ public class TestScreen extends AppCompatActivity implements APICall {
     ImageView imgTest4;
     @BindView(R2.id.img_test_5)
     ImageView imgTest5;
+    private final int DB_LIST_USER_CODE = 10;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.screen_test);
         ButterKnife.bind(this);
-//        RetrofitClient client = new RetrofitClient(Config.API_GITHUB_URL);
-//        GithubAPI.init(client.getInstance());
 
-        SimpleExoPlayer player = ExoPlayerFactory.newSimpleInstance(this);
-        exoTest.setPlayer(player);
-        DefaultDataSourceFactory datasource = new DefaultDataSourceFactory(this, Util.getUserAgent(this, "sample"));
-        ExtractorsFactory extractor = new DefaultExtractorsFactory();
-        ExtractorMediaSource source = new ExtractorMediaSource(Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"), datasource, extractor, null, null);
-        player.prepare(source);
-        player.getPlayWhenReady();
-
-//        imgTest1.setImageDrawable(getResources().getDrawable(R.drawable.placeholder));
-//        imgTest2.setImageDrawable(getResources().getDrawable(R.drawable.placeholder));
-//        imgTest3.setImageDrawable(getResources().getDrawable(R.drawable.placeholder));
-//        imgTest4.setImageDrawable(getResources().getDrawable(R.drawable.placeholder));
-//        imgTest5.setImageDrawable(getResources().getDrawable(R.drawable.placeholder));
-
-//        imgTest2.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.placeholder));
-
-//        imgTest1.setImageBitmap(CompressorClient.drawableToBitmap(this, R.drawable.placeholder));
-//        imgTest2.setImageBitmap(CompressorClient.drawableToBitmap(this, R.drawable.placeholder));
-//        imgTest3.setImageBitmap(CompressorClient.drawableToBitmap(this, R.drawable.placeholder));
-//        imgTest4.setImageBitmap(CompressorClient.drawableToBitmap(this, R.drawable.placeholder));
-//        imgTest5.setImageBitmap(CompressorClient.drawableToBitmap(this, R.drawable.placeholder));
     }
 
     @OnClick(R2.id.btn_test) void action() {
-        ListRepoRequest request = new ListRepoRequest("cymon1997");
-        Provider.getGithubAPI().listRepos(this, request);
+//        ListRepoRequest request = new ListRepoRequest("cymon1997");
+//        Provider.getGithubAPI().listRepos(this, request);
+        Provider.getUserDB(this).listUsers(this, DB_LIST_USER_CODE);
+    }
+
+    private void onLoad(List<UserData> data) {
+        String result = "result: \n";
+        for (int i = 0; i < data.size(); i++) {
+            result += String.format("uuid: %s name: %s\n", data.get(i).uuid, data.get(i).name);
+        }
+        String output = result;
+        tvTest.setText(output);
+        Router.gotoMain(this);
     }
 
     @Override
-    public void onResponse(APIResponse response) {
+    public void onAPIResponse(int code, APIResponse response) {
         this.tvTest.setText(String.format("status: %d\nmessage: %s\npayload: %s", response.status, response.message, response.payload));
     }
 
     @Override
-    public void onFailure(APIResponse response) {
-        this.tvTest.setText(String.format("status: %d\nmessage: %s\npayload: %s", response.status, response.message, response.payload));
+    public void onAPIFailure(int code, String message) {
+        this.tvTest.setText(String.format("message: %s", message));
+    }
+
+    @Override
+    public void onDBResponse(int code, DBResult result) {
+        switch (code) {
+            case DB_LIST_USER_CODE:
+                onLoad((List<UserData>) result.data);
+                break;
+        }
+    }
+
+    @Override
+    public void onDBFailure(int code, String message) {
+        Log.d("DB", "Error call db with code: " + message);
     }
 }

@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.cymonevo.nova.template.R;
 import com.cymonevo.nova.template.R2;
 import com.cymonevo.nova.template.config.Http;
+import com.cymonevo.nova.template.service.Provider;
 import com.cymonevo.nova.template.service.api.APICall;
 import com.cymonevo.nova.template.service.api.APIResponse;
 import com.cymonevo.nova.template.service.api.github.GithubAPI;
@@ -31,6 +32,7 @@ public class ListRepoFragment extends Fragment implements APICall {
     @BindView(R2.id.rv_list_repo)
     RecyclerView rvListRepo;
     LinearLayoutManager layoutManager;
+    private final int API_LIST_REPO_CODE = 10;
 
     @Nullable
     @Override
@@ -40,12 +42,12 @@ public class ListRepoFragment extends Fragment implements APICall {
         rvListRepo.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());
         rvListRepo.setLayoutManager(layoutManager);
-        GithubAPI.listRepos(this, new ListRepoRequest("cymon1997"));
+        Provider.getGithubAPI().listRepos(this, API_LIST_REPO_CODE, new ListRepoRequest("cymon1997"));
         return root;
     }
 
     @Override
-    public void onResponse(APIResponse response) {
+    public void onAPIResponse(int code, APIResponse response) {
         if (response.status == Http.STATUS_OK) {
             this.dataset = List.class.isInstance(response.payload)? List.class.cast(response.payload) : null;
             ListRepoAdapter adapter = new ListRepoAdapter(this.dataset);
@@ -56,7 +58,7 @@ public class ListRepoFragment extends Fragment implements APICall {
     }
 
     @Override
-    public void onFailure(APIResponse response) {
-        Toast.makeText(getContext(), response.message, Toast.LENGTH_SHORT).show();
+    public void onAPIFailure(int code, String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 }

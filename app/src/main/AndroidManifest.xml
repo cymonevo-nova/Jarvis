@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.cymonevo.nova.template">
+    package="com.cymonevo.nova.jarvis">
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -11,7 +11,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme" >
 
-        <activity android:name=".MainScreen">
+        <activity android:name="com.cymonevo.nova.jarvis.MainScreen">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
@@ -25,13 +25,13 @@
                     android:host="template" />
             </intent-filter>
         </activity>
-        <activity android:name=".SplashScreen">
+        <activity android:name="com.cymonevo.nova.jarvis.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".AuthScreen"/>
-        <activity android:name=".TestScreen"/>
+        <activity android:name="com.cymonevo.nova.jarvis.AuthScreen"/>
+        <activity android:name="com.cymonevo.nova.jarvis.TestScreen"/>
     </application>
 </manifest>

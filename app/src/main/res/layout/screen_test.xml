@@ -18,29 +18,5 @@
             android:layout_height="wrap_content"
             android:text="TEST RESULT"
             android:textColor="@color/themeDarkGray"/>
-        <com.google.android.exoplayer2.ui.PlayerView
-            android:id="@+id/exo_test"
-            android:layout_width="100dp"
-            android:layout_height="250dp"/>
-        <ImageView
-            android:id="@+id/img_test_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <ImageView
-            android:id="@+id/img_test_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <ImageView
-            android:id="@+id/img_test_3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <ImageView
-            android:id="@+id/img_test_4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <ImageView
-            android:id="@+id/img_test_5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
     </LinearLayout>
 </ScrollView>

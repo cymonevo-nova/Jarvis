@@ -1,8 +1,9 @@
 package com.cymonevo.nova.jarvis;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.util.Log;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -15,7 +16,6 @@ import com.cymonevo.nova.jarvis.service.api.APIResponse;
 import com.cymonevo.nova.jarvis.service.db.DBCall;
 import com.cymonevo.nova.jarvis.service.db.user.DBResult;
 import com.cymonevo.nova.jarvis.service.db.user.entity.UserData;
-import com.google.android.exoplayer2.ui.PlayerView;
 
 import java.util.List;
 
@@ -26,32 +26,32 @@ import butterknife.OnClick;
 public class TestScreen extends AppCompatActivity implements APICall, DBCall {
     @BindView(R2.id.tv_test)
     TextView tvTest;
-    @BindView(R2.id.exo_test)
-    PlayerView exoTest;
-    @BindView(R2.id.img_test_1)
-    ImageView imgTest1;
-    @BindView(R2.id.img_test_2)
-    ImageView imgTest2;
-    @BindView(R2.id.img_test_3)
-    ImageView imgTest3;
-    @BindView(R2.id.img_test_4)
-    ImageView imgTest4;
-    @BindView(R2.id.img_test_5)
-    ImageView imgTest5;
-    private final int DB_LIST_USER_CODE = 10;
+    private static final int DB_LIST_USER_CODE = 10;
+    private static final int SPEECH_REQUEST_CODE = 1;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.screen_test);
         ButterKnife.bind(this);
-
     }
 
     @OnClick(R2.id.btn_test) void action() {
 //        ListRepoRequest request = new ListRepoRequest("cymon1997");
 //        Provider.getGithubAPI().listRepos(this, request);
-        Provider.getUserDB(this).listUsers(this, DB_LIST_USER_CODE);
+//        Provider.getUserDB(this).listUsers(this, DB_LIST_USER_CODE);
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        startActivityForResult(intent, SPEECH_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == SPEECH_REQUEST_CODE && resultCode == RESULT_OK) {
+            List<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            tvTest.setText(result.toString());
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void onLoad(List<UserData> data) {

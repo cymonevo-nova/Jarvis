@@ -39,6 +39,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
+    implementation project(':pocketsphinx')
+
     implementation "androidx.appcompat:appcompat:$appCompat_version"
     implementation "com.google.android.material:material:$material_version"
     implementation "androidx.recyclerview:recyclerview:$androidx_version"
